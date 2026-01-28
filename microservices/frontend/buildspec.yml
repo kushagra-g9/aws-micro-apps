@@ -12,7 +12,7 @@ phases:
 
   post_build:
     commands:
-      - aws s3 sync build/ s3://my-frontend-bucket-kushagra --delete
+      - aws s3 sync build/ "s3://$S3_BUCKET" --delete
       - aws cloudfront create-invalidation \
-          --distribution-id $CLOUDFRONT_DISTRIBUTION_ID \
+          --distribution-id $CDN_ID \
           --paths "/*"
